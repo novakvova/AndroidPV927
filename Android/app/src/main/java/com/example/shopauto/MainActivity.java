@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,24 +28,16 @@ public class MainActivity extends AppCompatActivity {
         MainActivity intasnce = this;
         NetworkService.getInstance()
                 .getJSONApi()
-                .getPostWithID(1)
-                .enqueue(new Callback<Post>() {
+                .getPostWithID()
+                .enqueue(new Callback<List<Currency>>() {
                     @Override
-                    public void onResponse(@NonNull Call<Post> call, @NonNull Response<Post> response) {
-                        Post post = response.body();
-
-                        //post.getId();
-                        Toast.makeText(intasnce,post.getBody(), Toast.LENGTH_LONG).show();
-//                        textView.append(post.getId() + "\n");
-//                        textView.append(post.getUserId() + "\n");
-//                        textView.append(post.getTitle() + "\n");
-//                        textView.append(post.getBody() + "\n");
+                    public void onResponse(@NonNull Call<List<Currency>> call, @NonNull Response<List<Currency>> response) {
+                        List<Currency> post = response.body();
+                        //Toast.makeText(intasnce,post.getBuy(), Toast.LENGTH_LONG).show();
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<Post> call, @NonNull Throwable t) {
-
-                        //textView.append("Error occurred while getting request!");
+                    public void onFailure(@NonNull Call<List<Currency>> call, @NonNull Throwable t) {
                         t.printStackTrace();
                     }
                 });
