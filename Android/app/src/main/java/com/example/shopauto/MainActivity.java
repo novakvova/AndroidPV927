@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         //requestOptions.placeholder(R.drawable.bg_grey);
         //requestOptions.error(R.drawable.bg_grey);
 
-        Glide.with(MainActivity.this)
+        Glide.with(this)
                 .load(urlImg)
 
                 //.apply(requestOptions)
@@ -80,5 +83,33 @@ public class MainActivity extends AppCompatActivity {
 //                        t.printStackTrace();
 //                    }
 //                });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch(item.getItemId()) {
+            case R.id.mhome:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.mregister:
+                intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.mproduct:
+                intent = new Intent(this, ProductActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

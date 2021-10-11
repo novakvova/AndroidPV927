@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopAuto">
         <activity
+            android:name=".ProductActivity"
+            android:exported="true" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
