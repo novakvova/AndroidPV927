@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.shopauto.application.HomeApplication;
+import com.example.shopauto.constants.Urls;
 import com.example.shopauto.dto.ProductDTO;
 
 import java.util.Date;
@@ -39,7 +40,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductCardViewHolder> 
             holder.prodName.setText(model.getName());
             holder.prodPrice.setText(String.valueOf(model.getPrice()));
             int i = (int) (new Date().getTime()/1000);
-            String url = model.getImage()+"?data="+i;
+            String url = Urls.BASE+"/"+model.getImage()+"?data="+i;
             Glide.with(HomeApplication.getAppContext())
                     .load(url)
                     //.circleCrop()
