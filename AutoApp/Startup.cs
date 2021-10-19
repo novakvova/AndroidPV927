@@ -1,6 +1,7 @@
 using AutoApp.Constants;
 using AutoApp.Data;
 using AutoApp.Data.Identity;
+using AutoApp.Mapper;
 using AutoApp.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -102,6 +103,8 @@ namespace AutoApp
                 x.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+            services.AddAutoMapper(typeof(AppMapProfile));
 
         }
 

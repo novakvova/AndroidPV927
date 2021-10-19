@@ -1,4 +1,5 @@
-﻿using AutoApp.Data.Identity;
+﻿using AutoApp.Constants;
+using AutoApp.Data.Identity;
 using AutoApp.Helpers;
 using AutoApp.Models;
 using AutoApp.Services;
@@ -65,11 +66,12 @@ namespace AutoApp.Controllers
                     System.IO.File.Delete(fileNameSavePath);
                 return BadRequest(result.Errors);
             }
-            //result = await _userManager.AddToRoleAsync(user, "user");
-            //if (!result.Succeeded)
-            //{
-            //    return BadRequest(result.Errors);
-            //}
+
+            result = await _userManager.AddToRoleAsync(user, Roles.User);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
 
             return Ok(new
             {
